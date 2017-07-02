@@ -3,14 +3,14 @@ import UIKit
 //1
 public class BankAccount{
     var id: Int
-    var balance: Int
+    var balance: Double
     
-    init(id: Int, balance: Int){
+    init(id: Int, balance: Double){
         self.id = id
         self.balance = balance
     }
     
-    func deposit (by amount1: Int) throws {
+    func deposit (by amount1: Double) throws {
         guard balance == nil else {
             throw balanceErorr.outOfStock
         }
@@ -19,7 +19,7 @@ public class BankAccount{
        
     }
     
-    func withdraw (by amount: Int) throws {
+    func withdraw (by amount: Double) throws {
         guard balance < amount else {
             throw balanceErorr.noMoney
         }
@@ -81,14 +81,14 @@ enum org {
 //3
 
 fileprivate struct Bank{
-    var BankT: BankAccount = BankAccount(id: 0, balance: 1000000)
-    static fileprivate func transfer( sender: Client, count: Int , recipient: BankAccount){
+    var BankT: BankAccount = BankAccount(id: 0, balance: 1000000.0)
+    static fileprivate func transfer( sender: Client, count: Double , recipient: BankAccount){
         sender.BankAccount.balance = sender.BankAccount.balance - count
         recipient.balance += count
     }
 }
 
-var Vasya: Individuals = Individuals(id: 1, BA: BankAccount(id : 1, balance: 100000), firstName: "Vasya", secondName: "Vasichkin", date: "12-01-1779")
+var Vasya: Individuals = Individuals(id: 1, BA: BankAccount(id : 1, balance: 100000.0), firstName: "Vasya", secondName: "Vasichkin", date: "12-01-1779")
     Bank.transfer(sender: Vasya, count: 10, recipient: Bank.init().BankT)
     Vasya.BankAccount.balance
 
